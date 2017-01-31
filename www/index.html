@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Ractive test</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+    
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    
+</head>
+
+<body>
+    
+    <script id='template' type='text/ractive'>
+                <ul>
+                    {{#each fruitlist}}
+                        <li> {{name}} - Colour: {{colour}}, Cost: {{cost}}, Country: {{country}} </li>
+                    {{/each}}
+                </ul>
+
+    </script>
+    
+    
+
+    <div data-role="page" id="pageone">
+
+        <div data-role="header" data-position="fixed">
+            <h1>Ractive test</h1>
+        </div><!-- /header -->
+
+        <div data-role="content" id="content"> 
+        </div><!-- /content -->
+
+	
+        <form>
+        <div class="ui-field-contain">
+            <label for="select-native-1">Basic:</label>
+            <select name="select-native-1" id="select-native-1">
+                {{#each fruitlist:i}}
+                    <option value='{{i}}'>{{name}}</option>
+<!--                    <li> {{name}} - Colour: {{colour}}, Cost: {{cost}}, Country: {{country}} </li>-->
+                {{/each}}
+                
+<!--
+                <option value="1">The 1st Option</option>
+                <option value="2">The 2nd Option</option>
+                <option value="3">The 3rd Option</option>
+                <option value="4">The 4th Option</option>
+-->
+            </select>
+        </div>
+        </form>
+
+        <div data-role="footer" data-position="fixed">
+            <h4>My Footer</h4>
+        </div><!-- /footer -->
+ 
+    </div><!-- /page -->
+
+</body>
+</html>
